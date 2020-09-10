@@ -393,7 +393,9 @@ $settings=App\Setting::all()->keyBy('type');
         <!-- custom pagination end-->
 
             <nav class="text-center">
-                <?php echo $listings->links(); ?>
+                @if( method_exists($listings,'links'))
+                    {{$listings->links()}}
+                @endif
             </nav>
         </div>
 

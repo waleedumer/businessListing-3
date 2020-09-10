@@ -36,7 +36,7 @@
                         <?php endif; ?>
                     </h1>
                     <?php if ($listing_details['latitude'] != "" && $listing_details['longitude'] != ""): ?>
-                    <a class="address" href="http://maps.google.com/maps?q=<?php echo $listing_details['latitude']; ?>,<?php echo $listing_details['longitude']; ?>" target="_blank"><?php echo $listing_details['address']; ?></a>
+                    <a class="address" href="http://maps.google.com/maps?q=<?php echo $listing_details['latitude']; ?>,<?php echo $listing_details['longitude']; ?>" target="_blank"><?php echo $listing_details['address']; ?>{{$listing_details->city()->exists()?$listing_details->city['name']:'unknown'.', '.$listing_details->country['name']}}</a>
                     <?php endif; ?>
                 </div>
 
@@ -156,6 +156,7 @@
         <?php if($listing_details->package['ability_to_add_contact_form'] == 1): ?>
         <aside class="col-lg-4" id="sidebar">
             <div class="box_detail booking">
+                @if(Auth::check())
                 <form class="contact-us-form" action="<?php echo url('home/contact_us/'.$listing_details['listing_type']); ?>" method="post">
                     <input type="hidden" name="user_id" value="<?php echo $listing_details['user_id']; ?>">
                     <input type="hidden" name="requester_id" value="<?php echo auth()->user()->id; ?>">
@@ -173,8 +174,12 @@
 						<?php endif; ?>
                     <a href="javascript::" class=" add_top_30 btn_1 full-width purchase" onclick="getTheGuestNumberForBooking('<?php echo $listing_details['listing_type']; ?>')">Submit</a>
                 </form>
+
                 <a href="javascript:" onclick="addToWishList('<?php echo $listing_details['id']; ?>')" class="btn_1 full-width outline wishlist" id = "btn-wishlist"><i class="icon_heart"></i> <?php echo $listing_details->users()->exists() ? 'Remove from wishlist' : 'Add to wishlist'; ?></a>
                 <div class="text-center"><small>No money charged in this step</small></div>
+                @else
+                    <a href="{{(route('login'))}}" class="btn_1 full-width purchase" >ogin to contact us</a>
+                    @endif
             </div>
 
             <ul class="share-buttons">

@@ -110,7 +110,7 @@ if (!isset($user_id)) {
                             <br>
                             <small>
                                 <?php
-                                echo $listing->users->first()['name'].'<br/>'.date('D, d-M-Y', $listing['date_added']);
+                                echo $listing->user['name'].'<br/>'. $listing['created_at'];
                                 ?>
                             </small>
                         </td>

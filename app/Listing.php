@@ -19,7 +19,7 @@ class Listing extends Model
         'listing_thumbnail','listing_cover','seo_meta_tags',
         'meta_description','data_added','data_modified',
         'is_featured','google_analytics_id',
-        'id','package_id'
+        'id','package_id','images'
         ];
     public function user(){
         return $this->belongsTo('App\User');
@@ -79,4 +79,5 @@ class Listing extends Model
     public function time_now(){
         return Carbon::now();
     }
+
 }

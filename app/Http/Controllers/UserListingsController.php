@@ -50,7 +50,6 @@ class UserListingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request['variants']=json_encode($request['variants']);
         $request['product_name']=json_encode($request['product_name']);
         $request['menu_name']=json_encode($request['menu_name']);
@@ -62,18 +61,67 @@ class UserListingsController extends Controller
         $request['ending_time']=json_encode($request['ending_time']);
         $request['duration']=json_encode($request['duration']);
         $request['service_price']=json_encode($request['service_price']);
-        $request['room_name']=json_encode($request['room_name']);
+//        $request['room_name']=json_encode($request['room_name']);
         $request['room_description']=json_encode($request['room_description']);
         $request['room_price']=json_encode($request['room_price']);
         $request['hotel_room_amenities']=json_encode($request['hotel_room_amenities']);
         $request['user_id']=auth()->user()->id;
-        $listing=Listing::create($request->except([
-            'categories', "saturday_opening", "saturday_closing" ,
-            "sunday_opening" , "sunday_closing" , "monday_opening" ,
-            "monday_closing" , "tuesday_opening" , "tuesday_closing" ,
-            "wednesday_opening" , "wednesday_closing" , "thursday_opening" ,
-            "thursday_closing" , "friday_opening" , "friday_closing" , "amenities"
-        ]));
+
+        //start for listing images
+        $destinationPath=public_path('uploads/hotel_room_images');
+        $listing_images=collect([]);
+        if($request->hasFile('listing_images')){
+            $files=$request->file('listing_images');
+            foreach($files as $key=>$file){
+                $name=auth()->user()->id.time().$key.'.'.$file->getClientOriginalExtension();
+                $file->move($destinationPath,$name);
+                $listing_images[]=$name;
+            }
+        }
+        //end for listing images
+        //start for listing thumbnail
+        $destination_path_for_thumbnail=public_path('uploads/listing_thumbnails');
+        $thumbnail=null;
+        if($request->hasFile('listing_thumbnail')){
+            $file_for_thumbnail=$request->file('listing_thumbnail');
+            $name_for_thumbnail=auth()->user()->id.time().'.'.$file_for_thumbnail->getClientOriginalExtension();
+            $file_for_thumbnail->move($destination_path_for_thumbnail,$name_for_thumbnail);
+            $thumbnail=$name_for_thumbnail;
+        }else{
+            $thumbnail='thumbnail.png';
+        }
+        //end for listing thumbnail
+        //start for listing Cover
+        $destination_path_for_cover=public_path('uploads/listing_cover_photo');
+        $cover=null;
+        if($request->hasFile('listing_cover')){
+            $file_for_cover=$request->file('listing_cover');
+            $name_for_cover=auth()->user()->id.time().'.'.$file_for_cover->getClientOriginalExtension();
+            $file_for_cover->move($destination_path_for_cover,$name_for_cover);
+            $cover=$name_for_cover;
+        }else{
+            $cover='thumbnail.png';
+        }
+        //end for listing cover
+        //start creating and saving listing
+        $listing=Listing::create([
+            'code'=>$request['code'], 'name'=>$request['name'],
+            'description' =>$request['code'],
+            'video_url'=>$request['video_url'],'video_provider'=>$request['video_provider'],
+            'tags'=>$request['tags'],'address'=>$request['address'],
+            'email'=>$request['email'],'phone'=>$request['phone'],
+            'website' =>$request['website'],'social'=>$request['social'],
+            'user_id'=>$request['user_id'],'latitude' =>$request['latitude'],
+            'longitude'=>$request['longitude'],'country_id'=>$request['country_id'],
+            'city_id'=>$request['city_id'],'status'=>$request['status'],
+            'listing_type'=>$request['listing_type'], 'listing_thumbnail'=>$thumbnail,
+            'listing_cover'=>$cover,'seo_meta_tags'=>$request['seo_meta_tags'],
+            'meta_description'=>$request['meta_description'],
+            'is_featured'=>$request['is_featured'],
+            'google_analytics_id'=>$request['google_analytics_id'], 'package_id'=>$request['package_id'],
+            'images'=>json_encode($listing_images)
+        ]);
+        //end creating listing and saving it
         TimeConfiguration::create([
             'saturday'=>$request['saturday_opening'].'-'.$request['saturday_closing'],
             'sunday'=>$request['sunday_opening'].'-'.$request['sunday_closing'],
@@ -100,7 +148,7 @@ class UserListingsController extends Controller
         foreach ($amenities as $amenity){
             $amenity->listings()->attach($listing);
         }
-        return redirect(route('user.listings.create'))->with(['message'=>'Successful']);
+        return redirect(route('listings.create'))->with(['message'=>'Successful']);
 
     }
 

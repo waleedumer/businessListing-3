@@ -13,7 +13,7 @@ class FrontendListingsController extends Controller
     //
     public function index(){
         $page_data=['page_name'=>'listings','page_title'=>'Listings'];
-        $listings=Listing::paginate(8);
+        $listings=Listing::orderBy('is_featured','DESC')->paginate(8);
         $categories=Category::all();
         $amenities=Amenity::all();
         $cities=City::all();

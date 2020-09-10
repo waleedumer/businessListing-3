@@ -6,8 +6,8 @@
     if($reviews_exists){
         $rating = ($listing_details->reviews->keyBy('review_rating')->keys()->sum())/$reviews;
     }
-    $user_id = auth()->user()->id;
-    $user_type = auth()->user()->role['id'];
+    $user_id = $listing_details->user['id'];
+    $user_type = $listing_details->user->role['id'];
 ?>
 
 <section id="reviews">

@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="title" class="col-sm-3 control-label">Title</label>
     <div class="col-sm-7">
-        <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+        <input type="text" class="form-control" name="name" id="title" placeholder="Title" required>
     </div>
 </div>
 

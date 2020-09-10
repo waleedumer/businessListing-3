@@ -8,4 +8,7 @@ class SubCategory extends Model
 {
     //
     protected $fillable=['category_id','icon_class','name','slug','thumbnail'];
+    public function parent(){
+        return $this->belongsTo('App\Category','category_id');
+    }
 }
