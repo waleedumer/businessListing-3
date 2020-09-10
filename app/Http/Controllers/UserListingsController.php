@@ -145,8 +145,10 @@ class UserListingsController extends Controller
         $claimedListing->listing()->associate($listing);
         $claimedListing->save();
         $amenities=Amenity::find($request['amenities']);
-        foreach ($amenities as $amenity){
-            $amenity->listings()->attach($listing);
+        if($amenities->exists()) {
+            foreach ($amenities as $amenity) {
+                $amenity->listings()->attach($listing);
+            }
         }
         return redirect(route('listings.create'))->with(['message'=>'Successful']);
 

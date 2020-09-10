@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09a18d2c-a329-466b-9831-3e3e6eb01fe8" name="Default Changelist" comment="" />
+    <list default="true" id="09a18d2c-a329-466b-9831-3e3e6eb01fe8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ListingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ListingsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserListingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserListingsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/admin-dashboard/user-dashboard/packages.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/admin-dashboard/user-dashboard/packages.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/frontend/site_meta.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/frontend/site_meta.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,19 +150,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xamp\htdocs\laralearn\resources\webfonts\backend" />
-      <recent name="C:\xamp\htdocs\laralearn\resources\views\includes\admin-dashboard" />
-      <recent name="C:\xamp\htdocs\laralearn\resources\views\includes\admin-dashboard\content" />
-      <recent name="C:\xamp\htdocs\laralearn\resources\js\frontend" />
-      <recent name="C:\xamp\htdocs\laralearn\resources\css\frontend" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xamp\htdocs\laralearn\resources\captcha\frontend" />
       <recent name="C:\xamp\htdocs\laralearn\resources\sass\frontend" />
       <recent name="C:\xamp\htdocs\laralearn\resources" />
       <recent name="C:\xamp\htdocs\laralearn\resources\images\backend" />
       <recent name="C:\xamp\htdocs\laralearn\resources\images\frontend" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xamp\htdocs\laralearn\resources\webfonts\backend" />
+      <recent name="C:\xamp\htdocs\laralearn\resources\views\includes\admin-dashboard" />
+      <recent name="C:\xamp\htdocs\laralearn\resources\views\includes\admin-dashboard\content" />
+      <recent name="C:\xamp\htdocs\laralearn\resources\js\frontend" />
+      <recent name="C:\xamp\htdocs\laralearn\resources\css\frontend" />
     </key>
   </component>
   <component name="RunManager">
@@ -193,6 +200,7 @@
       <workItem from="1599548403017" duration="28585000" />
       <workItem from="1599628712992" duration="9200000" />
       <workItem from="1599637972464" duration="22109000" />
+      <workItem from="1599728333381" duration="5958000" />
     </task>
     <servers />
   </component>
@@ -209,10 +217,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="420" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1599162104890" />
-    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599396353179">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="464" y="135" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599732875092">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599396353179" />
+    <state x="464" y="135" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1599732875092" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1599029408622">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

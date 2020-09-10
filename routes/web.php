@@ -89,6 +89,8 @@ Route::group(['middleware'=>'user'], function(){
     Route::get('user/purchase_history','UserPricingsController@purchase_history')->name('user.purchase_history');
     Route::put('user/manage_profile_update/{id}','UserManageProfilesController@update_profile_info')->name('user.manage_profile_id');
     Route::get('user/package_invoice/{id}','UserPricingsController@print_invoice')->name('user.package_invoice');
+    Route::get('user/free_package/{request}','PurchasePackage@free')->name('user.purchase_package.free');
+    Route::get('user/payment_gateway/{request}','PurchasePackage@paid')->name('user.purchase_package.paid');
 });
 
 Auth::routes();
