@@ -86,5 +86,8 @@ class TimeConfiguration extends Model
 //            $time_end=Carbon::createFromFormat('h',$time[1]);
 //        }
 //    }
-
+    //compare time to check if the listing is now open or closed
+    public function compare_time(){
+        
+    }
 }

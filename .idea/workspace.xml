@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="09a18d2c-a329-466b-9831-3e3e6eb01fe8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ListingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ListingsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserListingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserListingsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/admin-dashboard/user-dashboard/packages.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/admin-dashboard/user-dashboard/packages.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/frontend/site_meta.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/frontend/site_meta.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/TimeConfiguration.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TimeConfiguration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/frontend/frontend_top.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/frontend/frontend_top.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,6 +145,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -171,7 +169,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -200,12 +198,15 @@
       <workItem from="1599548403017" duration="28585000" />
       <workItem from="1599628712992" duration="9200000" />
       <workItem from="1599637972464" duration="22109000" />
-      <workItem from="1599728333381" duration="5958000" />
+      <workItem from="1599728333381" duration="7286000" />
+      <workItem from="1599760600232" duration="428000" />
+      <workItem from="1599761207615" duration="666000" />
+      <workItem from="1599811899159" duration="774000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
     <state x="475" y="188" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1599546927812">
