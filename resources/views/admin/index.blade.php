@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>{{$page_data['page_title'] ?? '' }}| {{$website_title ?? ''}}</title>
     <!-- all the meta tags -->
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />

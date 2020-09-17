@@ -9,4 +9,4 @@
 <meta name="description" content="<?php echo $settings['meta_description']->description; ?>">
 <?php endif; ?>
 <meta name="author" content="Creativeitem">
-<title><?php echo $page_data['page_name'].' | '.$website_title;?></title>
+<title><?php echo ucfirst($page_data['page_name']).' | '.$website_title;?></title>

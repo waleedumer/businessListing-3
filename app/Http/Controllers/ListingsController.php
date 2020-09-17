@@ -114,7 +114,7 @@ class ListingsController extends Controller
         //start creating and saving listing
         $listing = Listing::create([
             'code' => $request['code'], 'name' => $request['name'],
-            'description' => $request['code'],
+            'description' => $request['description'],
             'video_url' => $request['video_url'], 'video_provider' => $request['video_provider'],
             'tags' => $request['tags'], 'address' => $request['address'],
             'email' => $request['email'], 'phone' => $request['phone'],
@@ -153,7 +153,7 @@ class ListingsController extends Controller
         $claimedListing->listing()->associate($listing);
         $claimedListing->save();
         $amenities = Amenity::find($request['amenities']);
-        if ($amenities->exists()) {
+        if (!is_null($amenities)) {
             foreach ($amenities as $amenity) {
                 $amenity->listings()->attach($listing);
             }
@@ -210,6 +210,24 @@ class ListingsController extends Controller
     public function destroy($id)
     {
         //
+            $listing=Listing::find($id);
+            $listing->amenities()->detach();
+            $listing->categories()->detach();
+            ClaimedListing::where('listing_id',$id)->forceDelete();
+            Listing::destroy($id);
+            TimeConfiguration::where('listing_id',$id)->forceDelete();
+        return redirect(route('listings.index'));
+    }
+    public function destroyMany($id){
+                $ids=explode(',',$id);
+                foreach($ids as $eachId){
+                    $listing=Listing::find($eachId);
+                    $listing->amenities()->detach();
+                    $listing->categories()->detach();
+                    ClaimedListing::where('listing_id',$id)->forceDelete();
+                    TimeConfiguration::where('listing_id',$eachId)->forceDelete();
+                }
+                Listing::destroy($ids);
     }
     public function make_active(Request $request, $id){
 

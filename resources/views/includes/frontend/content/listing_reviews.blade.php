@@ -17,11 +17,11 @@
         <div class="row">
             <div class="col-lg-3">
                 <div id="review_summary">
-                    <strong><?php echo $rating??''; ?></strong>
+                    <strong><?php echo $reviews_exists?$listing_details->reviews->first()['review_rating']:'0.0';?></strong>
                     <em>
-                        <?php echo $reviews_exists?$listing_details->reviews->first()['review_rating']:'0.0';?>
+
                     </em>
-                    <small>Based on ({{$reviews}}) Reviews</small>
+                    <small>Based on {{$reviews}} Reviews</small>
 
                 </div>
             </div>

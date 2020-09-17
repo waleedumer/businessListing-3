@@ -178,7 +178,7 @@
                 <a href="javascript:" onclick="addToWishList('<?php echo $listing_details['id']; ?>')" class="btn_1 full-width outline wishlist" id = "btn-wishlist"><i class="icon_heart"></i> <?php echo $listing_details->users()->exists() ? 'Remove from wishlist' : 'Add to wishlist'; ?></a>
                 <div class="text-center"><small>No money charged in this step</small></div>
                 @else
-                    <a href="{{(route('login'))}}" class="btn_1 full-width purchase" >ogin to contact us</a>
+                    <a href="{{(route('login'))}}" class="btn_1 full-width purchase" >Login to contact us</a>
                     @endif
             </div>
 

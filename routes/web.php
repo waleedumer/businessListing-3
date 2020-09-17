@@ -52,7 +52,9 @@ Route::group(['middleware'=>'admin'],function(){
     Route::resource('/admin/smtp_settings','SmtpSettingsController');
     Route::resource('/admin/manage_language','LanguagesController');
     Route::resource('/admin/map_settings','MapSettingsController');
-    Route::resource('/admin/listings','ListingsController')->except('show');
+    Route::resource('/admin/listings','ListingsController')->except('show','destroy');
+    Route::delete('admin/listings/{id}','listingsController@destroy')->name('listings.destroy');
+    Route::post('admin/listings/destroyMany/{ids}','listingsController@destroyMany')->name('listings.destroyMany');
     Route::post('/admin/listings/make_active','ListingsController@make_active')->name('listings.make_active');
     Route::post('/admin/listings/make_pending','ListingsController@make_pending')->name('listings.make_pending');
     Route::post('/admin/listings/make_featured','ListingsController@make_featured')->name('listings.make_featured');

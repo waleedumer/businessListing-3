@@ -16,7 +16,7 @@
                 <li><img src="<?php echo asset('assets/global/amenities.svg'); ?>" alt="" style="height: 20px; width: 20px;"><?php echo ucwords($amenity); ?></li>
                 <?php endforeach; ?>
             </ul>
-            <p style="margin-bottom: 10px;"><?php echo asset('price').': '.App\Setting::all()->keyBy('type')['system_currency']->description." ". $hotel_room['price']); ?></p>
+            <p style="margin-bottom: 10px;"><?php echo asset('price').': '.$currency." ". $hotel_room['price']; ?></p>
         </div>
     </div>
 </div>

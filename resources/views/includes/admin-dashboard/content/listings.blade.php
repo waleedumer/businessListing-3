@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <?php
 if (!isset($status)) {
     $status = 'all';
@@ -125,7 +126,7 @@ if (!isset($user_id)) {
                         </td>
                         <td>
                             <?php
-                            echo $listing->city->name.', '.$listing->country->name;
+                            echo $listing->city()->exists()?$listing->city->name:'N.A'.', '.$listing->country->name;
                             ?>
                         </td>
                         <td class="text-center">
@@ -236,9 +237,13 @@ if (!isset($user_id)) {
                 }, 300);
                 $('#delete_listings').slideUp(80);
             }
-
             //for delete to database
             $('#delete_listings').click(function(){
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
                 var vals = [];
                 $(":checkbox").each(function() {
                     if (this.checked)
@@ -246,9 +251,13 @@ if (!isset($user_id)) {
                 });
                 var listings_id = vals.toString();
                 $.ajax({
-                    url: '<?php echo url('admin/listings/'); ?>'+ listings_id,
+                    url: '<?php echo url('admin/listings/destroyMany'); ?>'+'/'+ listings_id,
+                    type:'POST',
                     success: function(response){
                         location.reload();
+                    },
+                    error: function(response) {
+                        console.log(response.responseText);
                     }
                 });
             });

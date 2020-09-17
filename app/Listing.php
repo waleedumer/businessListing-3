@@ -43,7 +43,7 @@ class Listing extends Model
         return $this->hasOne('App\ClaimedListing');
     }
     public function amenities(){
-        return $this->hasMany('App\Amenity','listing_id');
+        return $this->belongsToMany('App\Amenity');
     }
     public function hotel_room_specifications(){
         return $this->hasMany('App\HotelRoomSpecification');
