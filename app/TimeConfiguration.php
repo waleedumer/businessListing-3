@@ -88,6 +88,61 @@ class TimeConfiguration extends Model
 //    }
     //compare time to check if the listing is now open or closed
     public function compare_time(){
-        
+        if(strtolower(Carbon::today()->getTranslatedDayName())=="friday"){
+            $today= $this->friday;
+            $today=explode('-',$today);
+            return $today[0];
+//            if($today == 'closed-closed'){
+//                return true;
+//            }
+        }
+        if(strtolower(Carbon::today()->getTranslatedDayName())=="saturday"){
+            $today= $this->saturday;
+            return $today;
+//            if($today == 'closed-closed'){
+//                return true;
+//            }
+        }
+        if(strtolower(Carbon::today()->getTranslatedDayName())=="sunday"){
+            $today= $this->sunday;
+            return $today;
+//            if($today == 'closed-closed'){
+//                return true;
+//            }
+        }
+        if(strtolower(Carbon::today()->getTranslatedDayName())=="monday"){
+            $today= $this->monday;
+            return $today;
+//            if($today == 'closed-closed'){
+//                return true;
+//            }
+        }
+        if(strtolower(Carbon::today()->getTranslatedDayName())=="tuesday"){
+            $today= $this->tuesday;
+            return $today;
+//            if($today == 'closed-closed'){
+//                return true;
+//            }
+        }
+        if(strtolower(Carbon::today()->getTranslatedDayName())=="wednesday"){
+            $today= $this->wednesday;
+            return $today;
+        }
+        if(strtolower(Carbon::today()->getTranslatedDayName())=="thursday"){
+            $today= $this->thursday;
+            $today=explode('-',$today);
+            if($today[0]=='closed' || $today[1]=='closed'){
+                return 'closed';
+            }else{
+                $time_start=Carbon::createFromFormat('H',$today[0]);
+                $time_end=Carbon::createFromFormat('H',$today[1]);
+                if(now()->greaterThanOrEqualTo($time_start) && now()->lessThanOrEqualTo($time_end)){
+                    return 'Now open';
+                }else{
+                    return 'closed';
+                }
+            }
+
+        }
     }
 }

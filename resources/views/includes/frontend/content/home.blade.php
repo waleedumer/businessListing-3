@@ -122,7 +122,7 @@
                 </div>
                 <ul>
                 <!-- <li><span class="loc_open"><?php echo $listing->time; ?></span></li> -->
-                    <li><span class="<?php echo ($listing->time) == 'closed' ? 'loc_closed' : 'loc_open'; ?>"><?php echo $listing->time; ?></span></li>
+                    <li><span class="<?php echo ($listing->time->compare_time()) == 'closed' ? 'loc_closed' : 'loc_open'; ?>"><?php echo $listing->time->compare_time(); ?></span></li>
                     <li><div class="score"><span>
 						<?php
                                 if ($listing->reviews()->exists()) {
@@ -132,7 +132,7 @@
                                     echo 'Unreviewed';
                                 }
                                 ?>
-						<em><?php echo count($listing->reviews).' '.'Reviews'; ?></em></span><strong>{{$listing->reviews}}); ?></strong></div></li>
+						<em><?php echo $listing->reviews->count().' '.'Reviews'; ?></em></span><strong>{{$listing->reviews->count()>0?$listing->reviews->review_rating:'0.0'}}</strong></div></li>
                 </ul>
             </div>
         </div>

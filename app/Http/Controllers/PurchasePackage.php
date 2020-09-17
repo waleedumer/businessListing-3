@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Package;
 use App\Setting;
+use App\TimeConfiguration;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -27,5 +28,6 @@ class PurchasePackage extends Controller
     }
     public function paid(){
         $timezone=Setting::all()->keyBy('type')['timezone']->description;
+        dd(TimeConfiguration::latest()->first()->compare_time());
     }
 }

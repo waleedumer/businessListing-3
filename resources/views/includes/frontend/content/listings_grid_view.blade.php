@@ -338,7 +338,7 @@ $settings=App\Setting::all()->keyBy('type');
                         </div>
                         <ul class="<?php if($listing['is_featured'] == 1) echo 'featured-footer'; ?> mb-0">
 
-                            <li><span class="<?php echo \Carbon\Carbon::now() == 'closed' ? 'loc_closed' : 'loc_open'; ?>">{{\Carbon\Carbon::now($settings['timezone']->description)->hour}}</span></li>
+                            <li><span class="<?php echo $listing->time->compare_time()== 'closed' ? 'loc_closed' : 'loc_open'; ?>">{{$listing->time->compare_time()}}</span></li>
                             <li>
                                 <div class="score">
 									<span>
