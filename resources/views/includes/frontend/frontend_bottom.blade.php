@@ -12,6 +12,7 @@
 <script src="<?php echo asset('frontend/js/listing_map.js');?>"></script>
 <script src="<?php echo asset('frontend/js/infobox.js');?>"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<script src="<?php echo asset('backend/js/fileinput.js');?>"></script>
 
 <!--cookie modal-->
 
@@ -67,3 +68,4 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+@stack('custom-script')

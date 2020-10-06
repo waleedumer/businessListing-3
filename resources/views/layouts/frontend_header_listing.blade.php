@@ -5,7 +5,7 @@
             <div class="col-lg-3 col-12">
                 <div id="logo">
                     <a href="<?php echo url('home'); ?>">
-                        <img src="<?php echo asset('assets/global/dark_logo.png');?>" width="165" height="35" alt="" class="logo_sticky">
+                    <img src="<?php echo asset('global/dark_logo.png');?>" width="165" height="35" alt="" class="logo_sticky">
                     </a>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </a>
-                @include('includes.frontend.content.menu');
+                @include('includes.frontend.content.menu')
             </div>
         </div>
         <!-- /row -->

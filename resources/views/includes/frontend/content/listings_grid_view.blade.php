@@ -16,7 +16,7 @@ $settings=App\Setting::all()->keyBy('type');
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-4 col-10">
-                <h4><strong><?php echo count($listings); ?></strong> Result for all</h4>
+                <h4><strong><?php echo ($listings != null ? count($listings) : '0'); ?></strong> Result for all</h4>
             </div>
             <div class="col-lg-9 col-md-8 col-2">
                 <a href="#0" class="search_mob btn_search_mobile"></a> <!-- /open search panel -->
@@ -142,7 +142,7 @@ $settings=App\Setting::all()->keyBy('type');
                                 ?>
                                 <li class="<?php if($counter > $number_of_visible_categories) echo 'hidden-categories hidden'; ?>">
                                     <label class="container_check"> <i class="<?php echo $category['icon_class']; ?>"></i> <?php echo $category['name']; ?> <small></small> <!-- Here will be the number of the total listing -->
-                                        <input type="checkbox" name="category[]" class="categories" value="<?php echo $category['slug']; ?>" onclick="filter(this)" <?php if(in_array($category['id'], $category_ids)) echo 'checked'; ?>>
+                                        <input type="checkbox" name="category[]" class="categories" value="<?php echo $category['id']; ?>" onclick="filter(this)" <?php if(in_array($category['id'], $category_ids)) echo 'checked'; ?>>
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
@@ -151,7 +151,7 @@ $settings=App\Setting::all()->keyBy('type');
                                 ?>
                                 <li class="ml-3 <?php if($counter > $number_of_visible_categories) echo 'hidden-categories hidden'; ?>">
                                     <label class="container_check"> <?php echo $sub_category['name']; ?> <small></small> <!-- Here will be the number of the total listing -->
-                                        <input type="checkbox" name="category[]" class="categories" value="<?php echo $sub_category['slug']; ?>" onclick="filter(this)" <?php if(in_array($sub_category['id'], $category_ids)) echo 'checked'; ?>>
+                                        <input type="checkbox" name="category[]" class="categories" value="<?php echo $sub_category['id']; ?>" onclick="filter(this)" <?php if(in_array($sub_category['id'], $category_ids)) echo 'checked'; ?>>
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
@@ -165,7 +165,7 @@ $settings=App\Setting::all()->keyBy('type');
                         <div class="filter_type">
                             <h6>Price limit</h6>
                             <div class="distance"> Price within <span></span>{{App\Setting::all()->keyBy('type')['system_currency']->description}}</div>
-                            <input type="range" class="price-range" min="0" max="<?php// echo $this->frontend_model->get_the_maximum_price_limit_of_all_listings(); ?>" step="10" value="<?php echo $price_range; ?>" data-orientation="horizontal" onchange="filter(this)">
+                            <input type="range" class="price-range" min="0" max="<?php // echo $this->frontend_model->get_the_maximum_price_limit_of_all_listings(); ?>" step="10" value="<?php echo $price_range; ?>" data-orientation="horizontal" onchange="filter(this)">
                         </div>
 
                         <div class="filter_type">
@@ -181,7 +181,7 @@ $settings=App\Setting::all()->keyBy('type');
                                 <div class="">
                                     <li>
                                         <label class="container_check"> <i class="<?php echo $amenity['icon']; ?>"></i> <?php echo $amenity['name']; ?>
-                                            <input type="checkbox" class="amenities" name="amenity[]" value="<?php echo $amenity['slug']; ?>" onclick="filter(this)" <?php if(in_array($amenity['id'], $amenity_ids)) echo 'checked'; ?>>
+                                            <input type="checkbox" class="amenities" name="amenity[]" value="<?php echo $amenity['id']; ?>" onclick="filter(this)" <?php if(in_array($amenity['id'], $amenity_ids)) echo 'checked'; ?>>
                                             <span class="checkmark"></span>
                                         </label>
                                     </li>
@@ -220,7 +220,7 @@ $settings=App\Setting::all()->keyBy('type');
                                 <div class="">
                                     <li>
                                         <div class="">
-                                            <input type="radio" id="city_<?php echo $city['id'];?>" name="city" class="city" value="<?php echo $city['slug']; ?>" onclick="filter(this)" <?php if($city['id'] == $city_id) echo 'checked'; ?>>
+                                            <input type="radio" id="city_<?php echo $city['id'];?>" name="city" class="city" value="<?php echo $city['id']; ?>" onclick="filter(this)" <?php if($city['id'] == $city_id) echo 'checked'; ?>>
                                             <label for="city_<?php echo $city['id'];?>"><?php echo $city['name']; ?></label>
                                         </div>
                                     </li>
@@ -276,19 +276,20 @@ $settings=App\Setting::all()->keyBy('type');
 
             <div class="row">
 
-{{--            <?php--}}
+            {{-- <?php --}}
+            @if(!$listings == null)
             <?php foreach($listings as $listing):
-{{--            if(!has_package($listing['user_id']) > 0)--}}
-{{--                continue; --}}
-{{--?>--}}
+                    {{-- if(!has_package($listing['user_id']) > 0)--}}
+                    {{-- continue; --}}
+                    {{--?>--}}
                 ?>
 
-{{--            <?php--}}
-{{--            // $active_package = has_package($listing['user_id']);--}}
-{{--            // $listing_allowed_number = $this->db->get_where('package_purchased_history', array('id', $active_package))->row('number_of_listings');--}}
-{{--            // $listings_2 = $this->db->get_where('listing', array('user_id' => $listing['user_id']));--}}
+                {{-- <?php--}}
+                {{-- // $active_package = has_package($listing['user_id']);--}}
+                {{-- // $listing_allowed_number = $this->db->get_where('package_purchased_history', array('id', $active_package))->row('number_of_listings');--}}
+                {{-- // $listings_2 = $this->db->get_where('listing', array('user_id' => $listing['user_id']));--}}
 
-{{--            ?>--}}
+                {{-- ?>--}}
 
 
 
@@ -299,7 +300,7 @@ $settings=App\Setting::all()->keyBy('type');
                         <figure>
 
                             <a href="javascript::" class="wishlist-icon" onclick="addToWishList(this, '<?php echo $listing['id']; ?>')">
-{{--                                <i class=" <?php echo is_wishlisted($listing['id']) ? 'fas fa-heart' : 'far fa-heart'; ?> "></i>--}}
+                        {{--       <i class=" <?php echo is_wishlisted($listing['id']) ? 'fas fa-heart' : 'far fa-heart'; ?> "></i>--}}
                             </a>
                             <?php if($listing['is_featured'] == 1){ ?>
                             <a href="javascript::" class="featured-tag-grid">Featured</a>
@@ -365,7 +366,8 @@ $settings=App\Setting::all()->keyBy('type');
                     </div>
                 </div>
                 <!-- A Single Listing Ends-->
-                <?php endforeach; ?>
+                <?php endforeach;   ?>
+            @endif
             </div>
 
             <!-- custom pagination -->

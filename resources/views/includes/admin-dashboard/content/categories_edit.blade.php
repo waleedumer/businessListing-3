@@ -12,8 +12,9 @@
             </div>
             <div class="panel-body">
 
-                <form action="{{route('categories.update','$category_id')}}" method="POST" enctype="multipart/form-data" role="form" class="form-horizontal form-groups-bordered">
-
+                <form action="{{route('category.update')}}" method="POST" enctype="multipart/form-data" role="form" class="form-horizontal form-groups-bordered">
+                @csrf
+                    <input hidden type="text" name="id" value="{{$category_id}}">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Category Title</label>
 
@@ -29,8 +30,8 @@
                             <select name="parent" id = "parent" class="select2" data-allow-clear="true" data-placeholder="Select Parent Category" onchange="checkCategoryType(this.value)">
                                 <option value="0">none</option>
                                 <?php foreach ($categories as $category): ?>
-                                <?php if ($category['parent'] == 0 && $category_id  != $category['id']): ?>
-                                <option data-target=""value="<?php echo $category['id']; ?>" <?php if($category_details['parent'] == $category['id']) echo 'selected'; ?>> <?php echo $category['name']; ?></option>
+                                <?php if ($category->parent == 0 && $category_id  != $category->id): ?>
+                                <option data-target=""value="<?php echo $category->id; ?>" <?php if($category_details->parent == $category->id) echo 'selected'; ?>> <?php echo $category->name; ?></option>
                                 <?php endif; ?>
                                 <?php endforeach; ?>
                             </select>

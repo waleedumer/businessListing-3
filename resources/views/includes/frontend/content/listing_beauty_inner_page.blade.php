@@ -1,4 +1,8 @@
-<?php $beauty_services = $this->db->get_where('beauty_service', array('listing_id' => $listing_details['id']))->result_array(); ?>
+<?php 
+// $beauty_services = $this->db->get_where('beauty_service', array('listing_id' => $listing_details['id']))->result_array(); 
+$beauty_services = App\BeautyService::where('listing_id', $listing_details['id'])->get()->toArray();
+
+?>
 <h5>Special beauty service</h5>
 <div class="row add_bottom_15">
     <?php foreach ($beauty_services as $beauty_service): ?>
@@ -10,9 +14,9 @@
                 <div class="thumb">
                     <img src="<?php echo asset('uploads/beauty_service_images/'.$beauty_service['photo']); ?>" alt="" style="height: 88px; width: 88px;">
                 </div>
-                <h6><?php echo $beauty_service['name']; ?> <span><?php echo App\Setting::all()->keyBy('type')['system_currency']->description." ".$beauty_service['price']); ?> </span></h6>
+                <h6><?php echo $beauty_service['name']; ?> <span><?php echo App\Setting::all()->keyBy('type')['system_currency']->description." ".$beauty_service['price']; ?> </span></h6>
                 <?php
-                $times = explode(',', $beauty_service['service_times']);
+                $times = explode('-', $beauty_service['service_times']);
                 // $time_from = explode(':', $times[0]);
                 // $time_to = explode(':', $times[1]);
                 // if($time_from[0] > 12){
@@ -34,7 +38,7 @@
                 $time_from = strtotime($times[0].":00");
                 $time_to   = strtotime($times[1].":00");
                 echo '<p style="margin-bottom: 5px;">'.'Availability'.' : '.date('h:i A', $time_from).' - '.date('h:i A', $time_to).'</p>';
-                echo '<p>'.'Duration'.' : '.$times[2].' '.'Minutes'.'</p>'
+                //echo '<p>'.'Duration'.' : '.$times[2].' '.'Minutes'.'</p>'
                 ?>
             </li>
         </ul>

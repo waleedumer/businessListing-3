@@ -1,5 +1,19 @@
+
+@if($listing_details['images'] != null && count(json_decode($listing_details['images'])) > 2)
+<div class="hero_in shop_detail">
+    <div class="owl-carousel owl-theme owl-loaded listing-carousel">
+        @foreach(json_decode($listing_details['images']) as $key => $image)
+            <div class="item">
+                <img src="<?php echo asset('uploads/listing_images/'.$image); ?>" alt="">
+            </div>
+        @endforeach
+    </div>
+</div>
+@else
 <div class="hero_in shop_detail" style="background: url(<?php echo asset('uploads/listing_cover_photo/'.$listing_details['listing_cover']); ?>) center center no-repeat; background-size: cover;">
 </div>
+@endif
+
 <!--/hero_in-->
 {{--{{dd($listing_details->photos)}}--}}
 <nav class="secondary_nav sticky_horizontal_2">
@@ -199,6 +213,13 @@
 <!-- /container -->
 
 
+
+
+<!-- This map-category.php file has all the fucntions for showing the map, marker, map info and all the popup markups -->
+<?php include 'frontend/js/map/map-category.php'; ?>
+
+<!-- This script is needed for providing the json file which has all the listing points and required information -->
+@push('custom-script')
 <script type="text/javascript">
     var isLoggedIn = '<?php echo Auth::check(); ?>';
 
@@ -247,17 +268,18 @@
         }
 
     }
-</script>
 
-<!-- This map-category.php file has all the fucntions for showing the map, marker, map info and all the popup markups -->
-<?php include 'frontend/js/map/map-category.php'; ?>
-
-<!-- This script is needed for providing the json file which has all the listing points and required information -->
-<script>
     createListingsMap({
         mapId: 'map',
         jsonFile: '<?php echo asset('frontend/single-listing-geojson/listing-id-'.$listing_details['id'].'.json'); ?>'
     });
+    $('.owl-carousel').owlCarousel({
+    loop: true,
+    nav: true,
+    navText: ["<span class='fa fa-chevron-left'></span>","<span class='fa fa-chevron-right'></span>"]
+    })
+    $('.owl-carousel').find('.owl-nav').removeClass('disabled')
 </script>
+@endpush
 
 

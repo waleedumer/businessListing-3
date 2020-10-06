@@ -11,7 +11,9 @@ if($listings_view == 'list_view'){
     session(['listings_view'=>'grid_view']);
 }
 ?>
-@include ('includes.frontend.content.listings_'.session('listings_view'));
+
+@include ('includes.frontend.content.listings_'.session('listings_view'))
+
 <?php
 
 $all_json_files = glob('frontend/all-listings-geojson/*');

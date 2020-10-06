@@ -24,7 +24,7 @@ video {
 }
 
 .hero_in.shop_detail {
-  height:400px !important;
+  height:auto !important;
 }
 
 .wishlist-icon {
@@ -466,4 +466,42 @@ video {
 }
 .blog_text img {
   width: 100% !important;
+}
+
+.owl-nav {
+  position: absolute !important;
+  z-index: 5;
+  top: 40%;
+  width: 100%;
+}
+.owl-nav.disabled{
+display: block !important;
+}
+
+.owl-nav .owl-prev {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 31px !important;
+  background: white !important;
+  color: black !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px !important;
+}
+
+.owl-nav .owl-next {
+  position: absolute !important;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 31px !important;
+  background: white !important;
+  color: black !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px !important;
 }

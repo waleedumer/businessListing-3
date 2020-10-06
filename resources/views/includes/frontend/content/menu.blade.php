@@ -1,3 +1,4 @@
+
 <nav id="menu" class="main-menu">
     <ul>
         <li><span><a href="<?php echo url('home');?>">Home</a></span></li>
@@ -21,6 +22,7 @@
             </ul>
         </li>
         <?php endif; ?>
+        <li><a href="{{route('add.listing')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add Listing</a></li>
     </ul>
 </nav>
 

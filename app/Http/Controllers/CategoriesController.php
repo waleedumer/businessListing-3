@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\SubCategory;
 use Illuminate\Http\Request;
 use DB;
 
@@ -20,7 +21,7 @@ class CategoriesController extends Controller
         $page_data['page_name'] = 'categories';
         $page_data['page_title'] ='Categories';
         $categories=Category::orderBy('name','asc')->get();
-        $sub_categories=Category::all();
+        $sub_categories=SubCategory::all();
         return view('admin.index',compact(['page_data','categories', 'sub_categories']));
     }
 
@@ -57,7 +58,20 @@ class CategoriesController extends Controller
             $file->move($destinationPath,$name);
             $request['thumbnail']=$name;
         }
-        Category::create($request->all());
+
+
+        if($request->parent != 0)
+        {
+            $request['category_id'] = $request->parent;
+            $request['icon_class'] = $request->icon_class;
+            $request['name'] = $request->name;
+            $request['slug'] = str_replace(lcfirst($request->name), ' ', '-');
+            SubCategory::create($request->all());     
+        }
+        else
+        {
+            Category::create($request->all());
+        }
 
         return redirect(route('categories.index'));
     }
@@ -86,7 +100,8 @@ class CategoriesController extends Controller
         $page_data['page_title'] ='Categories Edit';
         $category_details=Category::find($id);
         $categories=Category::all();
-        $category_id=Category::all('id')->find($id);
+        $category_id=Category::find($id);
+        $category_id = $category_id->id;
         return view('admin.index',compact(['page_data','category_details', 'categories','category_id']));
 
     }
@@ -98,9 +113,36 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
+        $category = Category::find($request->id);
+        $category->slug = str_replace(lcfirst($request->name), ' ', '-');
+        $category->name = $request->name;
+        $category->icon_class = $request->icon_class;
+        if(!($request->hasFile('category_thumbnail'))) {
+            $category->thumbnail = 'thumbnail.png';
+        }else {
+            $file=$request->file('category_thumbnail');
+            $name=time().'.'.$file->getClientOriginalExtension();
+            $destinationPath=public_path('uploads/category_thumbnails');
+            $file->move($destinationPath,$name);
+            $category->thumbnail =$name;
+        }
+
+        $category->save();
+        // if($request->parent != 0)
+        // {
+        //     $category->category_id = $request->parent;
+            
+        //     // SubCategory::create($request->all());     
+        // }
+        // else
+        // {
+        //     Category::create($request->all());
+        // }
+
+        return redirect(route('categories.index'));
     }
 
     /**

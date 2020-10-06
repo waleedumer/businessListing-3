@@ -1,6 +1,6 @@
 <div class="price">
     <h5 class="d-inline">Book a table</h5>
-    <div class="score"><span><?php echo isset($quality) ? $quality : ('Unreviewed'); ?><em><?php echo count($reviews).' '.'Reviews'; ?></em></span><strong><?php echo $rating; ?></strong></div>
+    <div class="score"><span><?php echo isset($quality) ? $quality : ('Unreviewed'); ?><em><?php //echo count($reviews).' '.'Reviews'; ?></em></span><strong><?php //echo $rating; ?></strong></div>
 </div>
 
 <div class="form-group" id="input-dates">

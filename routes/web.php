@@ -13,18 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/listing/add', 'HomeController@add_listing')->name('add.listing');
 
 Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin','AdminController@index')->name('dashboard.index');
     Route::get('/admin/dashboard','AdminController@show')->name('dashboard.show');
     Route::resource('/admin/categories','CategoriesController');
+    Route::post('/admin/categories/update','CategoriesController@update')->name('category.update');
     Route::resource('/admin/amenities', 'AmenitiesController')->except('show');
     Route::resource('/admin/cities','CitiesController')->except('show');
     Route::resource('/admin/blogs','BlogsController')->except('show');

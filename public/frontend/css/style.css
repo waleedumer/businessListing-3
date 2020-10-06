@@ -59,7 +59,7 @@ Author URI: http://themeforest.net/user/Ansonika/
     position: relative;
     z-index: 9;
     width: auto;
-    top: 8px;
+    top: 0px;
     right: 15px;
     float: right;
     -moz-transition: all 0.3s ease-in-out;
@@ -89,7 +89,7 @@ Author URI: http://themeforest.net/user/Ansonika/
   /*First level styles */
   .main-menu > ul > li span > a {
     color: #fff;
-    padding: 0 8px 15px 8px;
+    padding: 0 8px 0px 8px;
     font-size: 14px;
     font-size: 0.875rem;
     font-weight: 500;
@@ -7745,6 +7745,11 @@ a.social_bt.google:before {
 
 .colors li a {
   border-radius: 3px;
+}
+
+.owl-stage .owl-item.active:nth-child(2) img {
+  transition: all 0.5s;
+  transform: scale(1.2);
 }
 
 @media only screen and (max-width: 1024px) {

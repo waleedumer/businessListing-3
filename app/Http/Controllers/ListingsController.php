@@ -8,12 +8,15 @@ use App\City;
 use App\ClaimedListing;
 use App\Country;
 use App\HotelRoomSpecification;
+use App\FoodMenu;
+use App\BeautyService;
 use App\Listing;
 use App\Package;
 use App\Review;
 use App\TimeConfiguration;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use function MongoDB\BSON\toJSON;
 
 class ListingsController extends Controller
@@ -56,22 +59,23 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
+        
 
-        $request['variants'] = json_encode($request['variants']);
-        $request['product_name'] = json_encode($request['product_name']);
-        $request['menu_name'] = json_encode($request['menu_name']);
-        $request['items'] = json_encode($request['items']);
-        $request['product_price'] = json_encode($request['product_price']);
-        $request['menu_price'] = json_encode($request['menu_price']);
-        $request['service_name'] = json_encode($request['service_name']);
-        $request['starting_time'] = json_encode($request['starting_time']);
-        $request['ending_time'] = json_encode($request['ending_time']);
-        $request['duration'] = json_encode($request['duration']);
-        $request['service_price'] = json_encode($request['service_price']);
+        // $request['variants'] = json_encode($request['variants']);
+        // $request['product_name'] = json_encode($request['product_name']);
+        // $request['menu_name'] = $request['menu_name'];
+        // $request['items'] = json_encode($request['items']);
+        // $request['product_price'] = $request['product_price'];
+        // $request['menu_price'] = $request['menu_price'];
+        // $request['service_name'] = $request['service_name'];
+        // $request['starting_time'] = $request['starting_time'];
+        // $request['ending_time'] = $request['ending_time'];
+        // $request['duration'] = $request['duration'];
+        // $request['service_price'] = $request['service_price'];
 //        $request['room_name']=json_encode($request['room_name']);
-        $request['room_description'] = json_encode($request['room_description']);
-        $request['room_price'] = json_encode($request['room_price']);
-        $request['hotel_room_amenities'] = json_encode($request['hotel_room_amenities']);
+        // $request['room_description'] = $request['room_description'];
+        // $request['room_price'] = $request['room_price'];
+        // $request['hotel_room_amenities'] = json_encode($request['hotel_room_amenities']);
         $request['user_id'] = auth()->user()->id;
 
         //start for listing images
@@ -79,7 +83,7 @@ class ListingsController extends Controller
         $listing_images = collect([]);
         if ($request->hasFile('listing_images')) {
             $files = $request->file('listing_images');
-
+            $destinationPath = public_path('uploads/listing_images');
             foreach ($files as $key => $file) {
                 $name = auth()->user()->id . time() . $key . '.' . $file->getClientOriginalExtension();
                 $file->move($destinationPath, $name);
@@ -129,6 +133,117 @@ class ListingsController extends Controller
             'google_analytics_id' => $request['google_analytics_id'], 'package_id' => $request['package_id'],
             'images' => json_encode($listing_images)
         ]);
+
+        
+        // Listing Type Checking
+
+          if($request['listing_type'] == 'hotel'){
+            $room_images = collect([]);
+              foreach ($request['room_name'] as $key => $value) {
+                if($value != null):
+                    if ($request->hasFile('room_image')) {
+                        $files = $request->file('room_image');
+                        $destinationPath = public_path('uploads/hotel_room_images');
+                        if($files[$key] != null):
+                            $name = auth()->user()->id . time() . $key . '.' . $files[$key]->getClientOriginalExtension();
+                            $files[$key]->move($destinationPath, $name);
+                            $room_images[] = $name;
+                        else:
+                            $room_images[] = 'thumbnail.png';
+                        endif;
+                    }
+                    HotelRoomSpecification::create([
+                        'listing_id' => $listing->id,
+                        'name' => $request['room_name'][$key],
+                        'description'=> json_encode($request['room_description'][$key]),
+                        'price' => $request['room_price'][$key],
+                        'amenities' => json_encode($request['hotel_room_amenities'][$key]),
+                        'photo' => $room_images[$key]
+                    ]);
+                endif;
+              }
+            
+          }else if($request['listing_type'] == 'restaurant'){
+            
+            $menu_images = collect([]);
+            foreach ($request['menu_name'] as $key => $value) {
+              if($value != null):
+                  if ($request->hasFile('menu_image')) {
+                      $files = $request->file('menu_image');
+                      $destinationPath = public_path('uploads/restaurant_menu_images');
+                      if($files[$key] != null):
+                          $name = auth()->user()->id . time() . $key . '.' . $files[$key]->getClientOriginalExtension();
+                          $files[$key]->move($destinationPath, $name);
+                          $menu_images[] = $name;
+                      else:
+                          $menu_images[] = 'thumbnail.png';
+                      endif;
+                  }
+                  FoodMenu::create([
+                      'listing_id' => $listing->id,
+                      'name' => $request['menu_name'][$key],
+                      'items'=> json_encode($request['items'][$key]),
+                      'price' => $request['menu_price'][$key],
+                      'photo' => $menu_images[$key]
+                  ]);
+              endif;
+            }
+
+          }else if($request['listing_type'] == 'shop'){
+            $menu_images = collect([]);
+            foreach ($request['menu_name'] as $key => $value) {
+              if($value != null):
+                  if ($request->hasFile('menu_image')) {
+                      $files = $request->file('menu_image');
+                      $destinationPath = public_path('uploads/restaurant_menu_images');
+                      if($files[$key] != null):
+                          $name = auth()->user()->id . time() . $key . '.' . $files[$key]->getClientOriginalExtension();
+                          $files[$key]->move($destinationPath, $name);
+                          $menu_images[] = $name;
+                      else:
+                          $menu_images[] = 'thumbnail.png';
+                      endif;
+                  }
+                  FoodMenu::create([
+                      'listing_id' => $listing->id,
+                      'name' => $request['menu_name'][$key],
+                      'variant'=> json_encode($request['items'][$key]),
+                      'price' => $request['menu_price'][$key],
+                      'photo' => $menu_images[$key]
+                  ]);
+              endif;
+            }
+
+          }else if($request['listing_type'] == 'beauty'){
+            $menu_images = collect([]);
+            foreach ($request['service_name'] as $key => $value) {
+              if($value != null):
+                  if ($request->hasFile('service_image')) {
+                      $files = $request->file('service_image');
+                      $destinationPath = public_path('uploads/beauty_service_images');
+                      if($files[$key] != null):
+                          $name = auth()->user()->id . time() . $key . '.' . $files[$key]->getClientOriginalExtension();
+                          $files[$key]->move($destinationPath, $name);
+                          $menu_images[] = $name;
+                      else:
+                          $menu_images[] = 'thumbnail.png';
+                      endif;
+                  }
+                  BeautyService::create([
+                      'listing_id' => $listing->id,
+                      'name' => $request['service_name'][$key],
+                      'service_times'=> $request['starting_time'][$key].'-'.$request['ending_time'][$key],
+                      'price' => $request['service_price'][$key],
+                      'photo' => $menu_images[$key]
+                  ]);
+              endif;
+            }
+          }
+          
+
+        // Listing Type Checking Ended
+
+
         //end creating listing and saving it
         TimeConfiguration::create([
             'saturday' => $request['saturday_opening'] . '-' . $request['saturday_closing'],
@@ -248,8 +363,38 @@ class ListingsController extends Controller
 
     }
     public function filter_listings(Request $request){
+        
         $page_data=['page_name'=>'listings','page_title'=>'Listings'];
-        $listings=Category::where('name',$request->input('category'))->first()->listings()->get();
+        if($request->input('city') == 'all')
+        {
+            $listings=Listing::paginate(20);
+        }
+        if($request->input('category') != null)
+        {
+            $listings=Category::where('id',$request->input('category'))->first()->listings()->get();
+        }
+        if($request->input('amenity') != null)
+        {
+            $listings=Amenity::where('id',$request->input('amenity'))->first()->listings()->get();
+        }
+        if($request->input('city') != null && $request->input('city') != 'all')
+        {
+            $listings=Listing::where('city_id',$request->input('city'))->get();
+        }
+        if($request->input('price-range') != 0)
+        {
+            $listings=Listing::paginate(20);
+        }
+        if($request->input('video') == 1)
+        {
+            $listings=Listing::whereNotNull('video_url')->paginate(8);
+        }
+        if($request->input('status') == 'open')
+        {
+            $listings= TimeConfiguration::where(lcfirst(Carbon::today()->format('l')), '!=', 'closed-closed')
+            ->where(lcfirst(Carbon::today()->format('l')), '!=', 'closed')
+            ->first()->listing()->get();
+        }
         $categories=Category::all();
         $amenities=Amenity::all();
         $cities=City::all();

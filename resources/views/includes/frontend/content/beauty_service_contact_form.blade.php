@@ -1,6 +1,6 @@
 <div class="price">
     <h5 class="d-inline">Appointment</h5>
-    <div class="score"><span><?php echo isset($quality) ? $quality : 'Unreviewed'; ?><em><?php echo count($reviews).' '.'Reviews'; ?></em></span><strong><?php echo $rating; ?></strong></div>
+    <div class="score"><span><?php echo isset($quality) ? $quality : 'Unreviewed'; ?><em><?php //echo count($reviews).' '.'Reviews'; ?></em></span><strong><?php //echo $rating; ?></strong></div>
 </div>
 
 <div class="form-group" id="input-dates">
@@ -12,9 +12,10 @@
     <select class="form-control" name="service" id="service" onchange="checkTime()" required>
         <option value="">Select a service</option>
         <?php
-        $services = $listing->beauty_services;
+        $services = $listing_details['beauty_services'];
+        // $services = $listing->beauty_services;
         foreach($services as $service){
-        $times = explode(',', $service['service_times']);
+        $times = explode('-', $service['service_times']);
         $time_from = strtotime($times[0].":00");
         $time_to   = strtotime($times[1].":00");
         ?>

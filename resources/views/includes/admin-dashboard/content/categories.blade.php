@@ -5,12 +5,13 @@
 </div>
 <div class="gallery-env">
     <div class="row">
+        
         <?php foreach ($categories as $category):
-        if($category->sub_categories()->count() > 0)
-            continue;
+
         $sub_categories = $category->sub_categories; ?>
         <div class="col-sm-4 on-hover-action" id = "<?php echo $category['id']; ?>">
             <article class="album">
+           
                 <header>
                     <a href="javascript:void(0)">
                         <img src="{{asset('uploads/category_thumbnails/'.$category['thumbnail'])}}" />

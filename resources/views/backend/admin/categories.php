@@ -6,8 +6,8 @@
 <div class="gallery-env">
   <div class="row">
     <?php foreach ($categories as $category):
-      if($category['parent'] > 0)
-      continue;
+      // if($category['parent'] > 0)
+      
       $this->db->order_by('name', 'asc');
       $sub_categories = $this->crud_model->get_sub_categories($category['id'])->result_array(); ?>
       <div class="col-sm-4 on-hover-action" id = "<?php echo $category['id']; ?>">

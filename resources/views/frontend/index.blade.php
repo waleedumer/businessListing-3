@@ -19,11 +19,11 @@
 @if ($page_data['page_name'] == 'home' || $page_data['page_name'] == '404')
     @include ('layouts.frontend_header_home')
 @elseif ($page_data['page_name'] == 'listings' || $page_data['page_name'] == 'listing/create')
-    @include ('layouts.frontend_header_listing');
+    @include ('layouts.frontend_header_listing')
 @elseif ($page_data['page_name'] == 'directory_listing')
-    @include ('layouts.frontend_header_home');
+    @include ('layouts.frontend_header_home')
 @else
-    @include ('layouts.frontend_header');
+    @include ('layouts.frontend_header')
     @endif
 
 
@@ -36,7 +36,7 @@
     <?php
     if(!($page_data['page_name'] == 'listings' && session('listings_view') == 'list_view')):
     ?>
-        @include ('includes.frontend.content.footer');
+        @include ('includes.frontend.content.footer')
     <?php
     endif;
     ?>

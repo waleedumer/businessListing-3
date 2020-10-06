@@ -47,7 +47,7 @@
             <div class="col-lg-4 col-md-6">
                 <a href="<?php echo url('home/filter_listings?category='.Illuminate\Support\Str::of($category['name'])->slug('-').'&&amenity=&&video=0&&status=all'); ?>" class="grid_item">
                     <figure>
-                        <img src="<?php echo asset('uploads/category_thumbnails/').$category['thumbnail'];?>" alt="">
+                        <img src="<?php echo asset('uploads/category_thumbnails/').'/'.$category['thumbnail'];?>" alt="">
                         <div class="info">
                             <small><?php echo count(App\Category::find($category['id'])->listings); ?>Listings</small>
                             <h3><?php echo $category['name']; ?></h3>
