@@ -132,7 +132,7 @@
                                     echo 'Unreviewed';
                                 }
                                 ?>
-						<em><?php echo $listing->reviews->count().' '.'Reviews'; ?></em></span><strong>{{$listing->reviews->count()>0?$listing->reviews->review_rating:'0.0'}}</strong></div></li>
+						<em><?php echo $listing->reviews->count().' '.'Reviews'; ?></em></span><strong>{{ $listing->reviews->count() > 0 ? $listing->reviews->review_rating : '0.0' }}</strong></div></li>
                 </ul>
             </div>
         </div>

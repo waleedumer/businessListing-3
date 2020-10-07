@@ -79,7 +79,7 @@
     </div>
 </div>
 
-@include('includes.admin-dashboard.content.special_offer_form')
+{{-- @include('includes.admin-dashboard.content.special_offer_form')
 @include('includes.admin-dashboard.content.restaurant_food_menu_form')
 @include('includes.admin-dashboard.content.beauty_service_form')
-@include('includes.admin-dashboard.content.hotel_room_specifications_form')
+@include('includes.admin-dashboard.content.hotel_room_specifications_form') --}}

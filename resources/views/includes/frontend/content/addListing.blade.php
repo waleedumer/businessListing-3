@@ -1,90 +1,96 @@
-<div class="container">
-    <div class="row">
-        <div class="col-lg-10 offset-lg-1 my-5">
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>Primary Listing Details</h5>
-                            </div>
-                            <div class="step-one">
-                                @include('includes.frontend.content.listing_create_1')
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>Category & Services</h5>
-                            </div>
-                            <div class="step-one">
-                                @include('includes.frontend.content.listing_create_2')
+<form action="{{route('store.listing')}}" method="post" enctype="multipart/form-data" role="form" class="form-horizontal form-groups-bordered listing_add_form">
+    @csrf
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 my-5">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Primary Listing Details</h5>
+                                </div>
+                                <div class="step-one">
+                                    @include('includes.frontend.content.listing_create_1')
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>Amenities</h5>
-                            </div>
-                            <div class="step-one">
-                                @include('includes.frontend.content.listing_create_5')
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>Business Hours</h5>
-                            </div>
-                            <div class="step-one">
-                                @include('includes.frontend.content.listing_create_3')
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Category & Services</h5>
+                                </div>
+                                <div class="step-one">
+                                    @include('includes.frontend.content.listing_create_2')
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>Social Media</h5>
-                            </div>
-                            <div class="step-one">
-                                @include('includes.frontend.content.listing_create_4')
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>SEO</h5>
-                            </div>
-                            <div class="step-one">
-                                @include('includes.frontend.content.listing_create_9')
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Amenities</h5>
+                                </div>
+                                <div class="step-one">
+                                    @include('includes.frontend.content.listing_create_5')
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <h5>Media</h5>
-                            </div>
-                            <div class="step-one">
-                                @include('includes.frontend.content.listing_create_7')
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Business Hours</h5>
+                                </div>
+                                <div class="step-one">
+                                    @include('includes.frontend.content.listing_create_3')
+                                </div>
                             </div>
                         </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Social Media</h5>
+                                </div>
+                                <div class="step-one">
+                                    @include('includes.frontend.content.listing_create_4')
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>SEO</h5>
+                                </div>
+                                <div class="step-one">
+                                    @include('includes.frontend.content.listing_create_9')
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <h5>Media</h5>
+                                </div>
+                                <div class="step-one">
+                                    @include('includes.frontend.content.listing_create_7')
+                                </div>
+                                <button class="btn btn-success float-right">Add</button>
+
+                            </div>
+                        </div>
+                        
                     </div>
-                    
+                    <div class="col-lg-3">
+                    <div class="page-style2-sidebar testClass" style="position: static; width: auto;">
+                                            <div class="quick_tip quick_tip_style2 lp-style-wrap-border">
+                                                <div class="quick-tip-inner"><h2>Tagline</h2><p>For businesses, taglines are of importance as they help business convey what they want to do and their goals to the customers.</p><img src="https://classic.listingprowp.com/wp-content/themes/listingpro/assets/images/quick-tip/title.png"></div></div></div>
+                    </div>
                 </div>
-                <div class="col-lg-3">
-                <div class="page-style2-sidebar testClass" style="position: static; width: auto;">
-										<div class="quick_tip quick_tip_style2 lp-style-wrap-border">
-											<div class="quick-tip-inner"><h2>Tagline</h2><p>For businesses, taglines are of importance as they help business convey what they want to do and their goals to the customers.</p><img src="https://classic.listingprowp.com/wp-content/themes/listingpro/assets/images/quick-tip/title.png"></div></div></div>
-                </div>
+                
             </div>
-            
         </div>
     </div>
-</div>
+   
+</form>
 
 <script type="text/javascript">
     function getCityList(country_id) {

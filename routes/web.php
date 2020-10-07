@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/listing/add', 'HomeController@add_listing')->name('add.listing');
+Route::post('/listing/store', 'HomeController@store')->name('store.listing');
 
 Route::group(['middleware'=>'admin'],function(){
     Route::get('/admin','AdminController@index')->name('dashboard.index');

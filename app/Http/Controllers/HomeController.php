@@ -78,7 +78,7 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
-        $request['user_id'] = auth()->user()->id;
+        // $request['user_id'] = auth()->user()->id;
 
         //start for listing images
         $destinationPath = public_path('uploads/hotel_room_images');
@@ -275,6 +275,6 @@ class HomeController extends Controller
                 $amenity->listings()->attach($listing);
             }
         }
-        return redirect(route('listings.create'))->with(['message'=>'Successful']);
+        return redirect(route('home'))->with(['message'=>'Successful']);
     }
 }
